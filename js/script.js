@@ -6,28 +6,41 @@ const popup = document.getElementById("popup");
 const imagePreview = document.getElementById("imagePreview");
 const previewImage = document.getElementById("previewImage");
 const previewTitle = document.getElementById("previewTitle");
+const previewDownload = document.getElementById("previewDownload");
+previewDownload.addEventListener("click", (event) => {
+
+    event.stopPropagation();
+
+});
 
 
 /* ==========================================
-   Download Function
+   Stop Propagation
 ========================================== */
 
-document.querySelectorAll(".download-btn").forEach(button => {
+document.querySelectorAll(".wallpaper img").forEach(image => {
 
-    button.addEventListener("click", () => {
+    image.addEventListener("click", () => {
 
-        const image = button.dataset.image;
+        previewImage.src = image.src;
 
-        const link = document.createElement("a");
+        previewTitle.textContent = image.dataset.title;
 
-        link.href = image;
+        previewDownload.onclick = () => {
 
-        link.download = "";
+            const link = document.createElement("a");
 
-        link.click();
+            link.href = image.src;
 
+            link.download = "";
 
-        showPopup();
+            link.click();
+
+            showPopup();
+
+        };
+
+        imagePreview.classList.add("show");
 
     });
 

@@ -101,30 +101,18 @@ body {
 }
 
 /* ==========================================
-   Download Button
+   Preview Download Button
 ========================================== */
 
-.download-btn {
+#previewDownload {
 
-    position: absolute;
+    margin-top: 20px;
 
-    top: 12px;
-
-    right: 12px;
-
-    width: 25px;
-
-    height: 30px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
+    padding: 14px 40px;
 
     border: none;
 
-    border-radius: 14px;
+    border-radius: 50px;
 
     background: rgba(255, 255, 255, .18);
 
@@ -134,36 +122,24 @@ body {
 
     color: white;
 
+    font-size: 1rem;
+
+    font-weight: 600;
+
     cursor: pointer;
 
-    font-size: 0;
-
-    transition: .25s;
-
-    z-index: 5;
+    transition: .3s;
 
 }
 
-.download-btn::before {
+#previewDownload:hover {
 
-    content: "⬇";
-
-    font-size: 20px;
-
-}
-
-.download-btn:hover {
-
-    transform: scale(1.08);
+    transform: scale(1.05);
 
     background: rgba(255, 255, 255, .28);
 
 }
 
-
-/* ==========================================
-   Floating Bottom Navigation
-========================================== */
 
 /* ==========================================
    Floating Categories
