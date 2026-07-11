@@ -136,7 +136,7 @@ body {
 
     transform: scale(1.05);
 
-    background: rgba(255, 255, 255, .28);
+    background: rgba(249, 249, 249, 0.48);
 
 }
 
@@ -150,103 +150,162 @@ body {
     position: fixed;
 
     left: 50%;
-
     bottom: 20px;
+    transform: translateX(-50%) scale(.96);
 
-    transform: translateX(-50%);
 
-    width: 200px;
+    width: clamp(300px, 90vw, 400px);
 
-    max-width: 90%;
 
-    padding-top: 10px;
-
-    padding-right: 10px;
-
-    padding-bottom: 0px;
-
-    padding-left: 10px;
+    padding: 12px 10px;
 
     border-radius: 35px;
 
     background: rgba(138, 138, 138, .15);
-
-    backdrop-filter: blur(50px);
-
-    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
 
     border: 1px solid rgba(255, 255, 255, .1);
 
-    transition: .35s;
-
     overflow: hidden;
-
     cursor: pointer;
-
     z-index: 100;
 
+    clip-path: inset(0 28% 0 28% round 35px);
+
+    transition:
+        transform 1s cubic-bezier(.22, 1, .36, 1),
+
+        clip-path 1s cubic-bezier(.22, 1, .36, 1);
 }
 
 .bar-title {
 
-    text-align: center;
+    display: flex;
 
-    font-size: 1.2rem;
+    justify-content: center;
 
-    font-weight: 600;
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: clamp(.95rem, 4vw, 1.3rem);
+
+    white-space: nowrap;
 }
 
 .tag-list {
 
     display: flex;
-
     flex-wrap: wrap;
-
     justify-content: center;
-
     gap: 10px;
 
-    margin-top: 18px;
-
-    opacity: 0;
+    margin-top: 0;
 
     max-height: 0;
 
-    transition: .3s;
+    opacity: 0;
+
+    transform: translateY(-10px);
+
+    overflow: hidden;
+
+    transition:
+        max-height 1s ease,
+        opacity 1s ease,
+        transform 1s ease,
+        margin-top 1s ease;
 
 }
 
 .floating-bar.open {
 
-    width: 420px;
-    height: 150px;
+    transform: translateX(-50%) scale(1);
+    clip-path: inset(0 0 0 0 round 35px);
 
 }
 
 .floating-bar.open .tag-list {
 
+    max-height: 100px;
+
+    margin-top: 18px;
+
     opacity: 1;
 
-    max-height: 250px;
+    transform: translateY(0);
 
 }
 
 .tag {
 
     border: none;
-
     padding: 10px 18px;
-
     border-radius: 30px;
-
-    cursor: pointer;
 
     background: rgba(255, 255, 255, .15);
 
     color: white;
 
-    transition: .25s;
+    cursor: pointer;
 
+    transform: translateY(12px);
+
+    opacity: 0;
+
+    transition:
+        transform 1s ease,
+        opacity 1s ease,
+        background 1s,
+        color 1s;
+
+}
+
+.floating-bar.open .tag {
+
+    transform: translateY(0);
+
+    opacity: 1;
+
+}
+
+.floating-bar.closing .tag-list {
+
+    opacity: 0;
+    transform: translateY(30px);
+
+
+    max-height: 0;
+
+    margin-top: 0;
+
+}
+
+.floating-bar.closing {
+
+    transform: translateX(-50%) scale(0.9);
+
+}
+
+.tag:nth-child(1) {
+    transition-delay: .05s;
+}
+
+.tag:nth-child(2) {
+    transition-delay: .10s;
+}
+
+.tag:nth-child(3) {
+    transition-delay: .15s;
+}
+
+.tag:nth-child(4) {
+    transition-delay: .20s;
+}
+
+.tag:nth-child(5) {
+    transition-delay: .25s;
 }
 
 .tag:hover {
@@ -351,9 +410,13 @@ body {
 
 .image-preview img {
 
-    width: min(80vw, 900px);
+    max-width: 100%;
+    max-height: 75vh;
 
-    max-height: 85vh;
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
 
     border-radius: 18px;
 
@@ -371,6 +434,7 @@ body {
 
 }
 
+
 /* ==========================================
    Image name popup
 ========================================== */
@@ -381,7 +445,13 @@ body {
 
     flex-direction: column;
 
+    justify-content: center;
+
     align-items: center;
+
+    max-width: 90vw;
+
+    max-height: 90vh;
 
 }
 

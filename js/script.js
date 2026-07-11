@@ -102,11 +102,27 @@ document.addEventListener("keydown", (event) => {
 
 const floatingBar = document.getElementById("floatingBar");
 
-floatingBar.addEventListener("click",(event)=>{
+floatingBar.addEventListener("click", (event) => {
 
-    if(event.target.classList.contains("tag")) return;
+    if (event.target.classList.contains("tag")) return;
 
-    floatingBar.classList.toggle("open");
+    if (floatingBar.classList.contains("open")) {
+
+    floatingBar.classList.remove("open");
+
+    floatingBar.classList.add("closing");
+
+    setTimeout(() => {
+
+        floatingBar.classList.remove("closing");
+
+    }, 1000);
+
+    } else {
+
+        floatingBar.classList.add("open");
+
+    }
 
 });
 
