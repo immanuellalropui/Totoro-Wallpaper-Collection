@@ -16,6 +16,34 @@ body {
 
 }
 
+/* ==========================================
+   Fonts Family
+========================================== */
+
+h1 {
+    font-family: "Comfortaa", sans-serif;
+    font-weight: 700;
+}
+
+p {
+    font-family: "Comfortaa", sans-serif;
+    font-weight: 700;
+}
+
+button {
+    font-family: "Comfortaa", sans-serif;
+    font-weight: 700;
+}
+
+span {
+    font-family: "Comfortaa", sans-serif;
+    font-weight: 700;
+}
+#previewTitle {
+    font-family: "Comfortaa", sans-serif;
+    font-weight: 700;
+}
+
 
 /* ==========================================
    Hero Heading
