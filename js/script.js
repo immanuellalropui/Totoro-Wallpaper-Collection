@@ -30,11 +30,17 @@ document.querySelectorAll(".wallpaper img").forEach(image => {
 
             const link = document.createElement("a");
 
-            link.href = image.src;
+            // Tell Cloudinary to force download
+            link.href = image.src.replace(
+                "/upload/",
+                "/upload/fl_attachment/"
+            );
 
-            link.download = "";
+            link.download = image.dataset.title + ".jpg";
 
+            document.body.appendChild(link);
             link.click();
+            document.body.removeChild(link);
 
             showPopup();
 
@@ -108,15 +114,15 @@ floatingBar.addEventListener("click", (event) => {
 
     if (floatingBar.classList.contains("open")) {
 
-    floatingBar.classList.remove("open");
+        floatingBar.classList.remove("open");
 
-    floatingBar.classList.add("closing");
+        floatingBar.classList.add("closing");
 
-    setTimeout(() => {
+        setTimeout(() => {
 
-        floatingBar.classList.remove("closing");
+            floatingBar.classList.remove("closing");
 
-    }, 1000);
+        }, 1000);
 
     } else {
 
@@ -130,37 +136,37 @@ const tags = document.querySelectorAll(".tag");
 
 const wallpapers = document.querySelectorAll(".wallpaper");
 
-tags.forEach(tag=>{
+tags.forEach(tag => {
 
-    tag.addEventListener("click",()=>{
+    tag.addEventListener("click", () => {
 
-        tags.forEach(btn=>btn.classList.remove("active"));
+        tags.forEach(btn => btn.classList.remove("active"));
 
         tag.classList.add("active");
 
         const selected = tag.dataset.tag;
 
-        wallpapers.forEach(wallpaper=>{
+        wallpapers.forEach(wallpaper => {
 
             const image = wallpaper.querySelector("img");
 
             const imageTags = image.dataset.tags;
 
-            if(selected==="all"){
+            if (selected === "all") {
 
-                wallpaper.style.display="block";
-
-            }
-
-            else if(imageTags.includes(selected)){
-
-                wallpaper.style.display="block";
+                wallpaper.style.display = "block";
 
             }
 
-            else{
+            else if (imageTags.includes(selected)) {
 
-                wallpaper.style.display="none";
+                wallpaper.style.display = "block";
+
+            }
+
+            else {
+
+                wallpaper.style.display = "none";
 
             }
 
